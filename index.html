@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar - V 0.3</title>
+    <title>Solar - V 0.4</title>
     <style>
         body { margin: 0; overflow: hidden; }
         canvas { display: block; }
@@ -60,8 +60,7 @@
     </style>
 </head>
 <body>
-    <div id="<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fmoshix.github.io%2Fsolar%2F&count_bg=%2379C83D&title_bg=%23000000&icon=planet.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>"</div>
-    <div id="version">Version: 0.4</div>
+    <div id="version">Version: 0.3</div>
     <div id="info"></div>
     <div id="zoom-control-container">
         Zoom: <input type="range" id="zoom-control" min="50" max="500" value="120">
@@ -79,8 +78,6 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-
-        
         // Adjust the camera to a better starting position
         camera.position.set(50, 50, 50);
         camera.lookAt(0, 0, 0);
@@ -96,8 +93,6 @@
 
         // Texture loader
         const textureLoader = new THREE.TextureLoader();
-
-
 
         // Sun
         const sunGeometry = new THREE.SphereGeometry(5, 32, 32);
@@ -183,47 +178,6 @@
             }
         }
 
-                
-        // galaxies and stars 
-        const galaxyTexture = textureLoader.load('galaxy.jpg');
-        const starTexture = textureLoader.load('star.jpg'); 
-
-
-
-        // Create a few dozen galaxies
-        for (let i = 0; i < 100; i++) { // Adjust number as needed
-            createGalaxy();
-        }
-
-        // Create a few dozen stars
-        for (let i = 0; i < 280; i++) { // Adjust number as needed
-            createStar();
-        }
-
-// Function to create a small galaxy
-function createGalaxy() {
-    const randomSize = Math.random() * (3.5 - 1.1) + 1.1; // Random size between 1.1 and 3.5
-    const galaxyGeometry = new THREE.SphereGeometry(randomSize, 32, 32, 0, Math.PI * 2, 0, 0.333008821280518 * Math.PI * 2); // Use thetaLength
-    const galaxyMaterial = new THREE.MeshBasicMaterial({ map: galaxyTexture, side: THREE.BackSide });
-    const galaxy = new THREE.Mesh(galaxyGeometry, galaxyMaterial);
-    galaxy.position.set(Math.random() * 2000 - 1000, Math.random() * 2000 - 1000, Math.random() * 2000 - 1000);
-    scene.add(galaxy);
-}
-
-function createStar() {
-    const randomSize = Math.random() * (1.8 - 1.1) + 1.1; // Random size between 1.1 and 1.8
-    const starGeometry = new THREE.SphereGeometry(randomSize, 8, 8); // Use random size
-    const starTexture = textureLoader.load('star.jpg'); // Replace with your star texture URL
-    const starMaterial = new THREE.MeshBasicMaterial({ map: starTexture });
-    const star = new THREE.Mesh(starGeometry, starMaterial);
-    star.position.set(Math.random() * 2000 - 1000, Math.random() * 2000 - 1000, Math.random() * 2000 - 1000);
-    scene.add(star);
-}
-        
-
-
-        
-        
         // Function to add moons
         function addMoon(planet, orbitRadius, orbitSpeed, size, name, mass, gravity, rotationSpeed, dayDuration, yearDuration, eccentricity, semiMajorAxis, inclination) {
             const moonGeometry = new THREE.SphereGeometry(size, 16, 16);
@@ -302,10 +256,11 @@ function createStar() {
             infoDiv.style.display = 'block';
         }
 
-
         // Animation loop
         function animate() {
             requestAnimationFrame(animate);
+	    // Rotate the Sun around its own axis
+            sun.rotation.y += 0.01; // Adjust the rotation speed as needed
 
             // Rotate planets and moons around their respective objects
             planets.forEach(planet => {
@@ -318,8 +273,6 @@ function createStar() {
                 }
             });
 
-
-            
             controls.update();
             renderer.render(scene, camera);
         }
