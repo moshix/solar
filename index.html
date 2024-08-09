@@ -213,7 +213,7 @@ function createGalaxy() {
 function createStar() {
     const randomSize = Math.random() * (1.8 - 1.1) + 1.1; // Random size between 1.1 and 1.8
     const starGeometry = new THREE.SphereGeometry(randomSize, 8, 8); // Use random size
-    const starTexture = textureLoader.load('https://path-to-your-star.jpg'); // Replace with your star texture URL
+    const starTexture = textureLoader.load('star.jpg'); // Replace with your star texture URL
     const starMaterial = new THREE.MeshBasicMaterial({ map: starTexture });
     const star = new THREE.Mesh(starGeometry, starMaterial);
     star.position.set(Math.random() * 2000 - 1000, Math.random() * 2000 - 1000, Math.random() * 2000 - 1000);
