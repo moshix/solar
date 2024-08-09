@@ -78,12 +78,6 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
-        
-        // galaxies and stars 
-        const galaxyTexture = textureLoader.load('galaxy.jpg');
-        const starTexture = textureLoader.load('star.jpg'); 
-
-
 
         
         // Adjust the camera to a better starting position
@@ -187,6 +181,14 @@
                 addMoon(planet, 3.5, 0.002, 0.5, "Iapetus", "1.8056 × 10^21 kg", "0.223 m/s²", "2.31 km/h", "79.321 Earth days", "79.321 Earth days", "0.0283", "3,561,300 km", "15.47°");
             }
         }
+
+                
+        // galaxies and stars 
+        const galaxyTexture = textureLoader.load('galaxy.jpg');
+        const starTexture = textureLoader.load('star.jpg'); 
+
+
+
         // Create a few dozen galaxies
         for (let i = 0; i < 30; i++) { // Adjust number as needed
             createGalaxy();
