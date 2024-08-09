@@ -161,7 +161,7 @@
             const planetGeometry = new THREE.SphereGeometry(1, 32, 32);
             const planet = new THREE.Mesh(planetGeometry, planetMaterial);
             planet.orbitRadius = data.orbitRadius;
-            planet.orbitSpeed = 0.010 / (i + 1); // Slowed down by 50%
+            planet.orbitSpeed = 0.012 / (i + 1); // Slowed down by 50%
             planet.angle = Math.random() * Math.PI * 2; // Random starting angle
             planet.name = data.name;
             planet.data = data;
@@ -186,7 +186,7 @@
             }
         }
 
-        // Function to add moons
+        // add moons
         function addMoon(planet, orbitRadius, orbitSpeed, size, name, mass, gravity, rotationSpeed, dayDuration, yearDuration, eccentricity, semiMajorAxis, inclination) {
             const moonGeometry = new THREE.SphereGeometry(size, 16, 16);
             const moonTexture = textureLoader.load('moon.jpg'); // Replace with your texture URL
