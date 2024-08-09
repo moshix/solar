@@ -78,6 +78,10 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
+        
+        // galaxies and stars 
+        const galaxyTexture = textureLoader.load('galaxy.jpg');
+        const starTexture = textureLoader.load('star.jpg'); 
 
         // Create a few dozen galaxies
         for (let i = 0; i < 10; i++) { // Adjust number as needed
@@ -106,9 +110,7 @@
         // Texture loader
         const textureLoader = new THREE.TextureLoader();
 
-        // galaxies and stars 
-        const galaxyTexture = textureLoader.load('galaxy.jpg');
-        const starTexture = textureLoader.load('star.jpg'); 
+
 
         // Sun
         const sunGeometry = new THREE.SphereGeometry(5, 32, 32);
