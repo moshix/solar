@@ -60,7 +60,7 @@
     </style>
 </head>
 <body>
-	<div id="version">Ephemerides with clickable objects for MVS 3.8 - Version: 0.3</div>
+	<div id="version">Ephemerides with clickable objects for MVS 3.8 - Version: 0.4</div>
     <div id="info"></div>
     <div id="zoom-control-container">
         Zoom: <input type="range" id="zoom-control" min="50" max="500" value="120">
@@ -71,7 +71,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
     <script>
-        // Scene setup
+        // ephemerides with clickable object information 
+	// Copyright 2024 by moshix
+	// this is intended to provide some useful application to run on top of MVS 3.8 TK5 with HTTPD
+	// v 0.1 humble beginnings and switch to three.js
+	// v 0.2 all planets and texture and lighting
+	// v 0.3 controls and ephemerides information for clicked objects
+	// v 0.4 sun spins correctly
+	    
+	// Scene setup
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ antialias: true });
