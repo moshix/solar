@@ -60,7 +60,7 @@
     </style>
 </head>
 <body>
-    <div id="version">Version: 0.2</div>
+    <div id="version">Version: 0.4</div>
     <div id="info"></div>
     <div id="zoom-control-container">
         Zoom: <input type="range" id="zoom-control" min="50" max="500" value="120">
@@ -185,16 +185,18 @@
 
 // Function to create a small galaxy
 function createGalaxy() {
-    const galaxyGeometry = new THREE.SphereGeometry(2, 32, 32); // Smaller radius
+    const randomSize = Math.random() * (3.5 - 1.1) + 1.1; // Random size between 1.1 and 3.5
+    const galaxyGeometry = new THREE.SphereGeometry(randomSize, 32, 32, 0, Math.PI * 2, 0, 0.333008821280518 * Math.PI * 2); // Use thetaLength
     const galaxyMaterial = new THREE.MeshBasicMaterial({ map: galaxyTexture, side: THREE.BackSide });
     const galaxy = new THREE.Mesh(galaxyGeometry, galaxyMaterial);
     galaxy.position.set(Math.random() * 2000 - 1000, Math.random() * 2000 - 1000, Math.random() * 2000 - 1000);
     scene.add(galaxy);
 }
 
-// Function to create a small star
 function createStar() {
-    const starGeometry = new THREE.SphereGeometry(0.05, 8, 8); // Smaller radius
+    const randomSize = Math.random() * (1.8 - 1.1) + 1.1; // Random size between 1.1 and 1.8
+    const starGeometry = new THREE.SphereGeometry(randomSize, 8, 8); // Use random size
+    const starTexture = textureLoader.load('https://path-to-your-star.jpg'); // Replace with your star texture URL
     const starMaterial = new THREE.MeshBasicMaterial({ map: starTexture });
     const star = new THREE.Mesh(starGeometry, starMaterial);
     star.position.set(Math.random() * 2000 - 1000, Math.random() * 2000 - 1000, Math.random() * 2000 - 1000);
@@ -310,7 +312,7 @@ function createStar() {
         }
 
         // Create a few dozen stars
-        for (let i = 0; i < 30; i++) { // Adjust number as needed
+        for (let i = 0; i < 40; i++) { // Adjust number as needed
             createStar();
         }
         animate();
