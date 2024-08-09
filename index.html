@@ -96,7 +96,8 @@
 
         // Sun
         const sunGeometry = new THREE.SphereGeometry(5, 32, 32);
-        const sunMaterial = new THREE.MeshBasicMaterial({ texture: 'sun.jpg' });
+        const sunTexture = textureLoader.load('sun.jpg'); // Replace with your texture URL
+        const sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
         const sun = new THREE.Mesh(sunGeometry, sunMaterial);
         sun.name = "Sun";
         sun.data = {
@@ -180,7 +181,8 @@
         // Function to add moons
         function addMoon(planet, orbitRadius, orbitSpeed, size, name, mass, gravity, rotationSpeed, dayDuration, yearDuration, eccentricity, semiMajorAxis, inclination) {
             const moonGeometry = new THREE.SphereGeometry(size, 16, 16);
-            const moonMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
+            const moonTexture = textureLoader.load('moon.jpg'); // Replace with your texture URL
+            const moonMaterial = new THREE.MeshPhongMaterial({ map: moonTexture });
             const moon = new THREE.Mesh(moonGeometry, moonMaterial);
             moon.orbitRadius = orbitRadius;
             moon.orbitSpeed = orbitSpeed;
