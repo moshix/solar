@@ -94,6 +94,10 @@
         // Texture loader
         const textureLoader = new THREE.TextureLoader();
 
+        // galaxies and stars 
+        const galaxyTexture = textureLoader.load('galaxy.jpg'); L
+        const starTexture = textureLoader.load('star.jpg'); 
+
         // Sun
         const sunGeometry = new THREE.SphereGeometry(5, 32, 32);
         const sunTexture = textureLoader.load('sun.jpg'); // Replace with your texture URL
@@ -178,6 +182,26 @@
             }
         }
 
+
+    // Function to create a galaxy
+    function createGalaxy() {
+        const galaxyGeometry = new THREE.SphereGeometry(50, 32, 32);
+        const galaxyMaterial = new THREE.MeshBasicMaterial({ map: galaxyTexture, side: THREE.BackSide });
+        const galaxy = new THREE.Mesh(galaxyGeometry, galaxyMaterial);
+        galaxy.position.set(Math.random() * 2000 - 1000, Math.random() * 2000 - 1000, Math.random() * 2000 - 1000);
+        scene.add(galaxy);
+    }
+
+    // Function to create stars
+    function createStar() {
+        const starGeometry = new THREE.SphereGeometry(0.1, 8, 8);
+        const starMaterial = new THREE.MeshBasicMaterial({ map: starTexture });
+        const star = new THREE.Mesh(starGeometry, starMaterial);
+        star.position.set(Math.random() * 2000 - 1000, Math.random() * 2000 - 1000, Math.random() * 2000 - 1000);
+        scene.add(star);
+    }
+
+        
         // Function to add moons
         function addMoon(planet, orbitRadius, orbitSpeed, size, name, mass, gravity, rotationSpeed, dayDuration, yearDuration, eccentricity, semiMajorAxis, inclination) {
             const moonGeometry = new THREE.SphereGeometry(size, 16, 16);
@@ -270,7 +294,17 @@
                     planet.updatePosition();
                 }
             });
+            // Create random galaxies
+            for (let i = 0; i < 5; i++) { // Adjust number as needed
+                createGalaxy();
+            }
 
+            // Create random stars
+            for (let i = 0; i < 100; i++) { // Adjust number as needed
+                createStar();
+            }
+
+            
             controls.update();
             renderer.render(scene, camera);
         }
