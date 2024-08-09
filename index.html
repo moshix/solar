@@ -282,15 +282,7 @@ function createStar() {
             `;
             infoDiv.style.display = 'block';
         }
-        // Create a few dozen galaxies
-        for (let i = 0; i < 10; i++) { // Adjust number as needed
-            createGalaxy();
-        }
 
-        // Create a few dozen stars
-        for (let i = 0; i < 30; i++) { // Adjust number as needed
-            createStar();
-        }
 
         // Animation loop
         function animate() {
@@ -312,7 +304,15 @@ function createStar() {
             controls.update();
             renderer.render(scene, camera);
         }
+        // Create a few dozen galaxies
+        for (let i = 0; i < 10; i++) { // Adjust number as needed
+            createGalaxy();
+        }
 
+        // Create a few dozen stars
+        for (let i = 0; i < 30; i++) { // Adjust number as needed
+            createStar();
+        }
         animate();
 
         // Handle window resize
