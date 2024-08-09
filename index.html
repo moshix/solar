@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar System Version 0.2</title>
+    <title>Solar - V 0.3</title>
     <style>
         body { margin: 0; overflow: hidden; }
         canvas { display: block; }
@@ -96,7 +96,7 @@
 
         // Sun
         const sunGeometry = new THREE.SphereGeometry(5, 32, 32);
-        const sunMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+        const sunMaterial = new THREE.MeshBasicMaterial({ texture: 'sun.jpg' });
         const sun = new THREE.Mesh(sunGeometry, sunMaterial);
         sun.name = "Sun";
         sun.data = {
@@ -115,14 +115,14 @@
         // Planets and their data
         const planets = [];
         const planetData = [
-            { name: "Mercury", color: 0xff0000, orbitRadius: 10, mass: "3.30 × 10^23 kg", gravity: "3.7 m/s²", rotationSpeed: "10.892 km/h", dayDuration: "58.6 Earth days", yearDuration: "88 Earth days", eccentricity: "0.2056", semiMajorAxis: "57.9 million km", inclination: "7.01°" },
+            { name: "Mercury", texture: 'mercury.jpg', orbitRadius: 10, mass: "3.30 × 10^23 kg", gravity: "3.7 m/s²", rotationSpeed: "10.892 km/h", dayDuration: "58.6 Earth days", yearDuration: "88 Earth days", eccentricity: "0.2056", semiMajorAxis: "57.9 million km", inclination: "7.01°" },
             { name: "Venus", texture: 'venus.jpg', orbitRadius: 15, mass: "4.87 × 10^24 kg", gravity: "8.87 m/s²", rotationSpeed: "6.52 km/h", dayDuration: "116.8 Earth days", yearDuration: "225 Earth days", eccentricity: "0.0067", semiMajorAxis: "108.2 million km", inclination: "3.39°" },
             { name: "Earth", texture: 'earth.jpg', orbitRadius: 20, mass: "5.97 × 10^24 kg", gravity: "9.8 m/s²", rotationSpeed: "1670 km/h", dayDuration: "24 hours", yearDuration: "365.25 days", eccentricity: "0.0167", semiMajorAxis: "149.6 million km", inclination: "0.00°" },
             { name: "Mars", texture: 'mars.jpg', orbitRadius: 25, mass: "6.42 × 10^23 kg", gravity: "3.71 m/s²", rotationSpeed: "868.22 km/h", dayDuration: "24.6 hours", yearDuration: "687 Earth days", eccentricity: "0.0934", semiMajorAxis: "227.9 million km", inclination: "1.85°" },
-            { name: "Jupiter", color: 0xff69b4, orbitRadius: 30, mass: "1.90 × 10^27 kg", gravity: "24.79 m/s²", rotationSpeed: "45,300 km/h", dayDuration: "9.9 hours", yearDuration: "12 Earth years", eccentricity: "0.0484", semiMajorAxis: "778.5 million km", inclination: "1.31°" },
-            { name: "Saturn", texture: 'saturn.png', orbitRadius: 35, mass: "5.68 × 10^26 kg", gravity: "10.44 m/s²", rotationSpeed: "36,840 km/h", dayDuration: "10.7 hours", yearDuration: "29.5 Earth years", eccentricity: "0.0565", semiMajorAxis: "1.43 billion km", inclination: "2.49°" },
-            { name: "Uranus", color: 0xadd8e6, orbitRadius: 40, mass: "8.68 × 10^25 kg", gravity: "8.69 m/s²", rotationSpeed: "9,320 km/h", dayDuration: "17.2 hours", yearDuration: "84 Earth years", eccentricity: "0.046", semiMajorAxis: "2.87 billion km", inclination: "0.77°" },
-            { name: "Neptune", color: 0x8a2be2, orbitRadius: 45, mass: "1.02 × 10^26 kg", gravity: "11.15 m/s²", rotationSpeed: "9,720 km/h", dayDuration: "16.1 hours", yearDuration: "165 Earth years", eccentricity: "0.009", semiMajorAxis: "4.50 billion km", inclination: "1.77°" }
+            { name: "Jupiter", texture: 'jupiter.jpg', orbitRadius: 30, mass: "1.90 × 10^27 kg", gravity: "24.79 m/s²", rotationSpeed: "45,300 km/h", dayDuration: "9.9 hours", yearDuration: "12 Earth years", eccentricity: "0.0484", semiMajorAxis: "778.5 million km", inclination: "1.31°" },
+            { name: "Saturn", texture: 'saturn.jpg', orbitRadius: 35, mass: "5.68 × 10^26 kg", gravity: "10.44 m/s²", rotationSpeed: "36,840 km/h", dayDuration: "10.7 hours", yearDuration: "29.5 Earth years", eccentricity: "0.0565", semiMajorAxis: "1.43 billion km", inclination: "2.49°" },
+            { name: "Uranus", texture: 'uranus.jpg', orbitRadius: 40, mass: "8.68 × 10^25 kg", gravity: "8.69 m/s²", rotationSpeed: "9,320 km/h", dayDuration: "17.2 hours", yearDuration: "84 Earth years", eccentricity: "0.046", semiMajorAxis: "2.87 billion km", inclination: "0.77°" },
+            { name: "Neptune", texture: 'neptune.jpg', orbitRadius: 45, mass: "1.02 × 10^26 kg", gravity: "11.15 m/s²", rotationSpeed: "9,720 km/h", dayDuration: "16.1 hours", yearDuration: "165 Earth years", eccentricity: "0.009", semiMajorAxis: "4.50 billion km", inclination: "1.77°" }
         ];
 
         for (let i = 0; i < planetData.length; i++) {
@@ -136,7 +136,7 @@
                 orbitPoints.push(new THREE.Vector3(Math.cos(theta) * data.orbitRadius, 0, Math.sin(theta) * data.orbitRadius));
             }
             const orbitGeometry = new THREE.BufferGeometry().setFromPoints(orbitPoints);
-            const orbitMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
+            const orbitMaterial = new THREE.LineBasicMaterial({ texture: 'moon.jpg' });
             const orbit = new THREE.Line(orbitGeometry, orbitMaterial);
             scene.add(orbit);
 
